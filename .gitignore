@@ -1,2 +1,3 @@
 .vscode
 *.safetensors
+__pycache__
