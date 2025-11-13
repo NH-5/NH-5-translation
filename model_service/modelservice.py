@@ -1,7 +1,7 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from fastapi import FastAPI
 from pydantic import BaseModel
-import os
+from pathlib import Path
 
 class RequestData(BaseModel):
     role:str
@@ -9,7 +9,8 @@ class RequestData(BaseModel):
     max_new_tokens:int =32768
 
 app = FastAPI()
-model_path = os.path.abspath("model/qwen3-0.6b")
+model_path = Path(__file__).resolve()
+model_path = model_path.parent / 'model/qwen3-0.6b'
 
 # load the tokenizer and the model
 tokenizer = AutoTokenizer.from_pretrained(model_path)
